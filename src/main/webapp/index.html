@@ -3,8 +3,110 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<script type= "text/javascript" src="js/funciones.js"></script>
+<script src="js/jquery.js"></script>
+<link rel="stylesheet" href="css/estilo1.css">
 </head>
 <body>
-<h3>Welcome to the jungle</h3>
+	<form name="frmCaptcha" id="frmCaptcha" action="" method="post">
+
+        <br />
+
+    
+            <div class="form-group">
+            <div class="col-md-8 " style="padding: 10px;">
+                <div class="titulositemmenuseleccionado">
+                    <h3>Agenda Covid</h3>
+                </div>
+            </div>
+            
+                <div class="col-md-8 seccion" style="padding: 10px;">
+                
+					 <div id="seccionesAyuda" class="seccionesAyuda">Paso 1 </div>
+                    <div class="col-md-3">
+                        <label for="Cedula" class="control-label ">Cedula:</label>
+                        <input type="text" class="form-control" maxlength="8" id="Cedula" name="Cedula" value="" title="* Ingrese la cedula sin puntos ni guiones, incluyendo el digito verificador">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="Nombre" class="control-label">Primer nombre:</label>
+                        <input type="text" class="form-control" maxlength="30" id="Nombre" name="Nombre" value="">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="Apellido" class="control-label">Primer apellido:</label>
+                        <input type="text" class="form-control" maxlength="30" id="Apellido" name="Apellido" value="">
+                        
+                    </div>
+                    <div class="col-md-3">
+                        <label for="Email" class="control-label">Correo Electr&oacute;nico:</label>
+                        <input type="text" class="form-control" maxlength="50" id="Email" name="Email" value="" title="* Ingrese un correo electronico v&aacute;lido">
+                        
+                    </div>
+                    <div class="col-md-3">
+                        <label for="FechaNacimiento" class="control-label">Fecha Nacimiento:</label>
+                        <input type="text" class="form-control " id="FechaNacimiento" name="FechaNacimiento" value="">
+                        
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="Telefono" class="control-label">Telefono Contacto:</label>
+                        <input type="text" class="form-control" maxlength="15" id="Telefono" name="Telefono" value="">
+                      
+                    </div>
+
+                </div>
+                <div class="col-md-8 seccion" style="padding: 10px;">
+                    
+                    <div id="seccionesAyuda" class="seccionesAyuda">Paso 2 </div>
+                    <div class="row">
+                    <div class="col-md-3 column">
+                        <label for="Categorias" class="control-label">Categoría:</label>
+                        <select id="Categorias" class="form-control" name="Categorias"> 
+                            <option value="-1" selected="">Seleccione..</option>
+                        </select>
+                        
+                    </div>
+                    <div class="col-md-3 column">
+
+                        <label for="Oficinas" class="control-label">Oficinas:</label>
+                        <select id="Oficinas" class="form-control control-requerido">
+                            <option value="-1" selected="">Seleccione..</option>
+                        </select>
+                       
+                    </div>          
+                    <div class="col-md-3 column">
+                        <label for="FechaVencimientoLicencia" class="control-label">Fecha vencimiento:</label>
+                        <input type="text" class="form-control " id="FechaVencimientoLicencia" name="FechaVencimientoLicencia" value="">
+                        
+
+                    </div>
+                    <div class="col-md-3 hide">
+                    <label for="FechaDeReferencia" class="control-label">Fecha de referencia:</label>
+                        <input type="text" class="form-control control-requerido" id="FechaDeReferencia" name="FechaDeReferencia" value="">
+                        
+
+                    </div>
+
+                    
+                
+                    
+                    
+                    <div class="col-md-2"></div>
+                    </div>
+                
+                    
+                </div>
+                <div class="col-md-8 col-offset-4 seccion" >
+            
+
+                    
+                    <div class="col-md-2 ">
+                        <input type="button" name="btnSubmit" value="Buscar hora" class="botones " onClick='buscarHora()' />
+                    </div>
+                </div>
+                
+            </div>
+
+    </form>
+
 </body>
 </html>
