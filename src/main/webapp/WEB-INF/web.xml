@@ -7,6 +7,7 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0">
 	<display-name>CrunchifyRESTJerseyExample</display-name>
 	<welcome-file-list>
+		<welcome-file>views/index.html</welcome-file>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.htm</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
@@ -21,7 +22,7 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 		</servlet-class>
 		<init-param>
 			<param-name>jersey.config.server.provider.packages</param-name>
-			<param-value>net.codejava</param-value>
+			<param-value>webservice</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
