@@ -1,4 +1,13 @@
 
+$(document).ready(function(){
+	ocultoMensajeError("Cedula");
+	ocultoMensajeError("Nombre");
+	ocultoMensajeError("Apellido");
+	ocultoMensajeError("Email");
+	ocultoMensajeError("FechaNacimiento");
+	ocultoMensajeError("Telefono");
+	ocultoMensajeError("Localidades");
+});
 function buscarHora(){
 	var usuario = getEstado();
 	if(usuario["estado"]==0){
@@ -50,5 +59,9 @@ function getEstado(){
 	})
 	return usuario;
 	 
+}
+
+function ocultoMensajeError(idCampo){
+	$('#' + "error_" + idCampo).fadeOut(400);
 }
 
