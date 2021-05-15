@@ -24,9 +24,9 @@ public class HelloResource {
 			"jdbc:mysql://agendavacunacion.ch8db7sv9fa2.us-west-1.rds.amazonaws.com:3306/AgendaVacunacion","admin","AbalAcostaMarquez.024");  
 			//here sonoo is database name, root is username and password  
 			Statement stmt=con.createStatement();  
-			ResultSet rs=stmt.executeQuery("select * from MyGuests");  
+			ResultSet rs=stmt.executeQuery("select * from usuario");  
 			while(rs.next())  
-			System.out.println(rs.getString("firstname"));  
+			System.out.println(rs.getString("nombre"));  
 			con.close();  
 			}catch(Exception e){ System.out.println(e);}  
 			  
