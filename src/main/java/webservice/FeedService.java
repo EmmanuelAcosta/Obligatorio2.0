@@ -13,7 +13,7 @@ import dto.FeedObjects;
 public class FeedService {
 
 	@GET
-	//@Path("/GetFeeds")
+	@Path("/GetFeeds")
 	@Produces("application/json")
 	public String feed() {
 		String feeds = null;

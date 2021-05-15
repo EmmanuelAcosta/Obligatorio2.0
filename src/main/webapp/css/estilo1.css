@@ -1,0 +1,27 @@
+@charset "ISO-8859-1";
+
+.titulositemmenuseleccionado{
+	font-family:Arial;
+	font-size: 16px;
+	font-weight: bold;
+	color:#0193de;
+	padding: 8px;
+}
+
+.seccion{
+	background-color: #dfdfdf;
+	color: #767676;
+	empty-cells: show;
+	font-family: Arial;
+	font-size: 11px;
+	text-align: justify;
+	padding: 15px;
+	border-radius: 10px;
+	margin:5px;
+}
+
+.seccionesAyuda{
+	color:#767676;
+	font-size:16px;
+	font-weight: bold;
+}
