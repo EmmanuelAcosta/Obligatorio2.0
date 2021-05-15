@@ -25,3 +25,11 @@
 	font-size:16px;
 	font-weight: bold;
 }
+
+.error{
+	border: 2px solid;
+	border-color: red;
+	color:#FFFFFF;
+	background-color: #CC9999;
+	
+}
