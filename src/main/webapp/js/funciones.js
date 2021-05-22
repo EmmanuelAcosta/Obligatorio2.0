@@ -8,13 +8,14 @@ $(document).ready(function(){
 	ocultoMensajeError("Telefono");
 	ocultoMensajeError("Localidades");
 });
+
 function buscarHora(){
 	var usuario = getEstado();
 	if(usuario[0].estado==0){
 		var jsonCupos = buscarHoraCupo();
 		var reserva = reservarCupo(usuario,jsonCupos);
 		if(reserva==true){
-			alert("Se encuentra agendado- Día 1er dosis: " + jsonCupos[0].fec_primer_Dosis + "- Dia 2da dosis: " + jsonCupos[0].fec_segunda_dosis);
+			alert("Se encuentra agendado- Día 1er dosis: " + jsonCupos[0].fec_primer_dosis + "- Dia 2da dosis: " + jsonCupos[0].fec_segunda_dosis);
 		}
 	}else{
 		alert("Ya tiene una agenda en curso");
