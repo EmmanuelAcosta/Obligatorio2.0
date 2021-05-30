@@ -40,6 +40,7 @@ public class QueueService {
 					.maxNumberOfMessages(5).build();
 			List<Message> messages = sqsClient.receiveMessage(receiveMessageRequest).messages();
 			String json = new Gson().toJson(messages);
+			//this.deleteMessages(sqsClient, queueUrl, messages);
 			return json;
 		} catch (SqsException e) {
 			System.err.println(e.awsErrorDetails().errorMessage());
@@ -48,5 +49,25 @@ public class QueueService {
 		return null;
 
 	}
+	
+	public void deleteMessages(SqsClient sqsClient, String queueUrl,  List<Message> messages) {
+        System.out.println("\nDelete Messages");
+        // snippet-start:[sqs.java2.sqs_example.delete_message]
+
+        try {
+            for (Message message : messages) {
+                DeleteMessageRequest deleteMessageRequest = DeleteMessageRequest.builder()
+                    .queueUrl(queueUrl)
+                    .receiptHandle(message.receiptHandle())
+                    .build();
+                sqsClient.deleteMessage(deleteMessageRequest);
+            }
+            // snippet-end:[sqs.java2.sqs_example.delete_message]
+
+        } catch (SqsException e) {
+            System.err.println(e.awsErrorDetails().errorMessage());
+            System.exit(1);
+        }
+   }
 
 }
