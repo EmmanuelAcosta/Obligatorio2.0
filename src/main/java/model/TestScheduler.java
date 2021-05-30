@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import webservice.CupoService;
 import webservice.QueueService;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.sqs.SqsClient;
@@ -27,8 +28,18 @@ public class TestScheduler extends TimerTask {
 	}
 	public void schedule(JSONObject jsonObject) {
 		System.out.println(jsonObject.get("body"));
-		SqsClient sqsClient = SqsClient.builder().region(Region.US_WEST_1).build();
-		this.deleteMessage(jsonObject.getString("recieptHandle"), jsonObject, sqsClient);
+		CupoService cupoService = new CupoService();
+		//Obtengo los cupos existentes.
+		String jsonCupos = this.getCupos(cupoService);
+		//reservo los cupos
+		JSONArray jsonCuposArray = new JSONArray(jsonCupos);
+		if(!jsonCuposArray.isNull(0)&&!jsonCuposArray.isEmpty()) {
+			JSONObject jsonObjectCupo = new JSONObject(jsonCuposArray.get(0).toString());
+			//String setCupo = cupoService.reservarCupo("Deberia ir cedula", "Deberia ir ");
+			//Elimino los mensajes de la cola si todo ocurre correcto.
+			SqsClient sqsClient = SqsClient.builder().region(Region.US_WEST_1).build();
+			//this.deleteMessage(jsonObject.getString("recieptHandle"), jsonObject, sqsClient);
+		}
 		
 	}
 	public void deleteMessage(String recieptHandle,JSONObject jsonObject,SqsClient sqsClient) {
@@ -39,7 +50,11 @@ public class TestScheduler extends TimerTask {
                 .build();
             sqsClient.deleteMessage(deleteMessageRequest);
 	}
-
+	
+	public String getCupos(CupoService cupoService) {
+		String jsonCupos = cupoService.cupo();
+		return jsonCupos;
+	}
 	@Override
 	public void run() {
 		//Creo una queue service de las que están en los webServices
@@ -52,7 +67,7 @@ public class TestScheduler extends TimerTask {
 		if(!jsonArray.isNull(0) && !jsonArray.isEmpty()) {
 			for(Object jsons : jsonArray) {
 				JSONObject jsonObject = new JSONObject(jsons.toString());
-				//this.schedule(jsonObject);
+				this.schedule(jsonObject);
 			}
 			System.out.println(jsonArray.get(0));
 		}
