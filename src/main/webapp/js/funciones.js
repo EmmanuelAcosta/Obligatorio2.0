@@ -7,6 +7,7 @@ $(document).ready(function(){
 	ocultoMensajeError("FechaNacimiento");
 	ocultoMensajeError("Telefono");
 	ocultoMensajeError("Localidades");
+	ocultoMensajeError("Tiempo");
 });
 
 function buscarHora(){
@@ -94,5 +95,22 @@ function reservarCupo(usuario,jsonCupos){
 		}
 	})
 	return reserva;
+}
+
+function iniciarScheduler(){
+	var endpoint = "http://localhost:8089/HelloREST/rest/WebService/InitiateScheduler";
+	$.ajax({
+		url:endpoint,
+		type: 'GET',
+		dataType: 'json',
+		data:{},
+		async:false,
+		error: function(){
+				alert("No anda na");
+		},
+		success: function(respuesta){
+				respuesta=eval(respuesta);
+		}
+	})
 }
 

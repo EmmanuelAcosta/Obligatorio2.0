@@ -1,6 +1,7 @@
 package webservice;
 
 import java.util.ArrayList;
+import java.util.Timer;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -11,7 +12,8 @@ import javax.ws.rs.QueryParam;
 import com.google.gson.Gson;
 
 import dto.CupoObject;
-import model.CupoManager;			
+import model.CupoManager;
+import model.TestScheduler;			
 @Path("/WebService")
 public class CupoService {
 	@GET
@@ -26,6 +28,7 @@ public class CupoService {
 			Gson gson = new Gson();
 			System.out.println(gson.toJson(cupoData));
 			cupos = gson.toJson(cupoData);
+			
 		}
 
 		catch (Exception e) {
@@ -33,6 +36,7 @@ public class CupoService {
 		}
 		return cupos;
 	}
+	
 	@POST
 	@Path("/SetCupo")
 	@Produces("application/json")
