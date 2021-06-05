@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import webservice.CupoService;
 import webservice.QueueService;
@@ -26,7 +27,7 @@ public class TestScheduler extends TimerTask {
 	public String returnName() {
 		return this.name;
 	}
-	public void schedule(JSONObject jsonObject) {
+	public boolean schedule(JSONObject jsonObject) {
 		System.out.println(jsonObject.get("body"));
 		CupoService cupoService = new CupoService();
 		//Obtengo los cupos existentes.
@@ -35,11 +36,16 @@ public class TestScheduler extends TimerTask {
 		JSONArray jsonCuposArray = new JSONArray(jsonCupos);
 		if(!jsonCuposArray.isNull(0)&&!jsonCuposArray.isEmpty()) {
 			JSONObject jsonObjectCupo = new JSONObject(jsonCuposArray.get(0).toString());
-			//String setCupo = cupoService.reservarCupo("Deberia ir cedula", "Deberia ir ");
+			String codigoReserva = jsonObjectCupo.getString("codigo_reserva");
+			JSONObject jsonMessageBody = new JSONObject(jsonObject.getString("body"));
+			String cedula = String.valueOf(jsonMessageBody.getInt("id"));
+			String setCupo = cupoService.reservarCupo(cedula, codigoReserva);
 			//Elimino los mensajes de la cola si todo ocurre correcto.
 			SqsClient sqsClient = SqsClient.builder().region(Region.US_WEST_1).build();
-			//this.deleteMessage(jsonObject.getString("recieptHandle"), jsonObject, sqsClient);
+			this.deleteMessage(jsonObject.getString("receiptHandle"), jsonObject, sqsClient);
+			return true;
 		}
+		return false;
 		
 	}
 	public void deleteMessage(String recieptHandle,JSONObject jsonObject,SqsClient sqsClient) {
@@ -67,7 +73,10 @@ public class TestScheduler extends TimerTask {
 		if(!jsonArray.isNull(0) && !jsonArray.isEmpty()) {
 			for(Object jsons : jsonArray) {
 				JSONObject jsonObject = new JSONObject(jsons.toString());
-				this.schedule(jsonObject);
+				System.out.println(jsons.toString());
+				JSONObject jsonObjectMessage = new JSONObject(jsonObject.getString("body"));			
+				boolean schedule = this.schedule(jsonObject);
+				if(!schedule) break;
 			}
 			System.out.println(jsonArray.get(0));
 		}
