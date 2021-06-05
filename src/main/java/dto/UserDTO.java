@@ -7,7 +7,7 @@ public class UserDTO {
 	private String name;
 	private String lastName;
 	private int phone;
-	private Date birthdate;
+	private String birthdate;
 	private String location;
 	private String email;
 	
@@ -23,7 +23,7 @@ public class UserDTO {
 	public int getPhone() {
 		return phone;
 	}
-	public Date getBirthDate() {
+	public String getBirthDate() {
 		return birthdate;
 	}
 	public String getLocation() {
@@ -44,7 +44,7 @@ public class UserDTO {
 	public void setPhone(int phone) {
 		this.phone = phone;
 	}
-	public void setBirthdate(Date birth) {
+	public void setBirthdate(String birth) {
 		this.birthdate = birth;
 	}
 	public void setLocation(String location) {
