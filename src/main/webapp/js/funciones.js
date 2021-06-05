@@ -83,12 +83,22 @@ function reservarCupo(usuario,jsonCupos){
 	var cedula = usuario[0].cedula;
 	var codigo_reserva = jsonCupos[0].codigo_reserva;
 	var reserva = new Object();
-	var endpoint = "http://localhost:8089/HelloREST/rest/WebService/SetCupo?cedula=" + cedula +"&codigo_reserva="+codigo_reserva;
+	var endpoint = "http://localhost:8089/HelloREST/rest/WebService/SetQueue";
 	$.ajax({
 		url:endpoint,
 		type: 'POST',
 		dataType: 'json',
-		data:{},
+		data:{
+    		"user": {
+        		"id": 1232,
+        		"name": "Nombre",
+        		"lastName": "LastName",
+        		"phone":"65598981",
+        		"birthdate":"01/01/1990",
+        		"location":"lugar",
+        		"email":"grupo@gmail.com"
+    		}
+		},
 		async:false,
 		error: function(){
 				alert("No se pudo reservar el cupo");
