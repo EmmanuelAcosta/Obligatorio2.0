@@ -74,7 +74,11 @@ function ocultoMensajeError(idCampo){
 function MuestroMensajError(idCampo){
     $('#' +"error_" + idCampo).fadeIn(800);
 }
-
+//Aca ya no se debe ir mas a reservar cupos se debería insertar en la tabla
+//Usuario al usuario en cuestión
+//Y debería mandarse directamente a la cola con el sendRequest, quizás modificando
+//un poco ese metodo para que haga la inserción si no existe, y si no solamente lo envía
+//a la cola.
 function reservarCupo(usuario,jsonCupos){
 	var cedula = usuario[0].cedula;
 	var codigo_reserva = jsonCupos[0].codigo_reserva;
