@@ -18,7 +18,7 @@ public class Cupo {
 		ArrayList<CupoObject> cupoData = new ArrayList<CupoObject>();
 		try {
 			PreparedStatement ps = connection
-					.prepareStatement("SELECT * FROM Cupo");
+					.prepareStatement("SELECT * FROM Cupo where estado = 0");
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				CupoObject cupoObject = new CupoObject();

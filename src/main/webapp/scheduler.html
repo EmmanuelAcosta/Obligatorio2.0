@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Agenda Covid-19</title>
+<script src="js/jquery.js"></script>
+<script type="text/javascript" src="js/funciones.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/estilo1.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+	<form name="frmScheduler" id="frmScheduler" action="" method="post">
+
+		<br />
+		<div class="container-fluid" id="contenido">
+			<div class="form-group">
+				<div class="col-md-8 " style="padding: 10px;">
+					<div class="titulositemmenuseleccionado">
+						<h3>Iniciar Scheduler</h3>
+					</div>
+				</div>
+				<div class="col-md-8 seccion" style="padding: 10px;">
+					<div class="row">
+						<div class="col-md-3">
+							<label for="Cedula" class="control-label ">Cantidad de
+								tiempo:</label> <input type="text" class="form-control" maxlength="8"
+								id="Tiempo" name="Tiempo" value=""
+								title="* Ingrese la cantidad de tiempo">
+							<div class="error" id="error_Tiempo">Tiempo invalido</div>
+							<input type="button" name="btnSubmit" value="Iniciar Scheduler"
+								class="botones " onClick='iniciarScheduler()' />
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+
+</body>
