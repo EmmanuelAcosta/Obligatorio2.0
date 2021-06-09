@@ -22,9 +22,35 @@ public class Usuario {
 				userObject.setApellido(rs.getString("apellido"));
 				userObject.setFecha_nacimiento(rs.getDate("fec_nac"));
 				userObject.setEstado(rs.getInt("estado"));
+				userObject.setTelefono(rs.getString("telefono"));
 				user.add(userObject);
 			}
 			return user;
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+	
+	public boolean insertUser(Connection connection,UserObject userObject) throws Exception {
+		String user = "";
+		try {
+			PreparedStatement ps = connection
+					.prepareStatement("SELECT * FROM Usuario where cedula = '" + userObject.getCedula() +"'");
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				return false;
+			}else {
+				String insert = "insert into Usuario (cedula,nombre,apellido,estado,reg_date,fec_nac,email) values("
+						+ userObject.getCedula() + ",'" + userObject.getNombre() + "'"
+						+ ",'" + userObject.getApellido()+"'"
+								+ ",0,CURDATE()," + "STR_TO_DATE('" + userObject.getFecha_nacimiento()+"','%Y-%m-%d')" + ",'" + userObject.getEmail()+"')";
+				PreparedStatement ps2 = connection
+						.prepareStatement(insert);
+				int rs2 = ps2.executeUpdate();
+				connection.commit();
+				connection.close();
+			}
+			return true;
 		} catch (Exception e) {
 			throw e;
 		}

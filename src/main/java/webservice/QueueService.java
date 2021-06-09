@@ -50,10 +50,11 @@ public class QueueService {
 	@Path("/PostQueue")
 	@Produces("application/json")
 	@Consumes("application/json")
-	public boolean setQueue(@RequestBody String user) {
+	public String setQueue(@RequestBody String user) {
 		JSONObject jsonObject  = new JSONObject(user); 
 		JSONObject jsonUser = jsonObject.getJSONObject("user");
 		System.out.println(jsonUser.toString());
+		Gson gson = new Gson();
 		try {
 			String queueUrl = "https://sqs.us-west-1.amazonaws.com/457393350873/queue-qa.fifo";
 			SqsClient sqsClient = SqsClient.builder().region(Region.US_WEST_1).build();
@@ -63,12 +64,13 @@ public class QueueService {
 	                .messageGroupId("a")
 	                //.delaySeconds(10)
 	                .build());
-			return true;
+			
+			return gson.toJson(true);
 		} catch (SqsException e) {
 			System.err.println(e.awsErrorDetails().errorMessage());
 			System.exit(1);
 		}
-		return false;
+		return gson.toJson(false);
 	}
 		
 	public void deleteMessages(SqsClient sqsClient, String queueUrl,  List<Message> messages) {

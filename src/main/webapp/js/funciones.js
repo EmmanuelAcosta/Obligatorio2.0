@@ -10,17 +10,59 @@ $(document).ready(function(){
 	ocultoMensajeError("Tiempo");
 });
 
+
 function buscarHora(){
+	insertarUsuario();
 	var usuario = getEstado();
 	if(usuario[0].estado==0){
 		var jsonCupos = buscarHoraCupo();
 		var reserva = reservarCupo(usuario,jsonCupos);
 		if(reserva==true){
-			alert("Se encuentra agendado- Día 1er dosis: " + jsonCupos[0].fec_primer_dosis + "- Dia 2da dosis: " + jsonCupos[0].fec_segunda_dosis);
+			alert("Se le informará de su agenda cuando queden cupos disponibles");
 		}
 	}else{
 		alert("Ya tiene una agenda en curso");
 	}
+}
+
+function insertarUsuario(){
+	var endpoint = "http://localhost:8089/HelloRest/rest/WebService/InsertUser";
+	var cedula = $("#Cedula").val();
+	var nombre = $("#Nombre").val();
+	var apellido = $("#Apellido").val();
+	var telefono = $("#Telefono").val();
+	var email = $("#Email").val();
+	var fecnac = $("#FechaNacimiento").val();
+	//var cedula = usuario[0].cedula;
+	//var codigo_reserva = jsonCupos[0].codigo_reserva;
+	var reserva = new Object();
+	var endpoint = "http://localhost:8089/HelloREST/rest/WebService/InsertUser";
+	$.ajax({
+		url:endpoint,
+		type: 'POST',
+		dataType: 'json',
+		contentType: 'application/json',
+		data:JSON.stringify({
+    		"user": {
+        		"cedula": cedula,
+        		"nombre": nombre,
+        		"apellido": apellido,
+        		"telefono":telefono,
+        		"fecnac":fecnac,
+        		"email":email
+    		}
+		}),
+		async:false,
+		error: function(){
+				alert("No se pudo reservar el cupo");
+		},
+		success: function(respuesta){
+				respuesta=eval(respuesta);
+				reserva = respuesta;
+		}
+	})
+	return reserva;
+		
 }
 function buscarHoraCupo(){
 	//Deberia agregarse archivo de configuración con el enpoint
@@ -80,25 +122,29 @@ function MuestroMensajError(idCampo){
 //un poco ese metodo para que haga la inserción si no existe, y si no solamente lo envía
 //a la cola.
 function reservarCupo(usuario,jsonCupos){
-	var cedula = usuario[0].cedula;
-	var codigo_reserva = jsonCupos[0].codigo_reserva;
+	var cedula = $("#Cedula").val();
+	var nombre = $("#Nombre").val();
+	var apellido = $("#Apellido").val();
+	var telefono = $("#Telefono").val();
+	var email = $("#Email").val();
+	var fecnac = $("#FechaNacimiento").val();
 	var reserva = new Object();
-	var endpoint = "http://localhost:8089/HelloREST/rest/WebService/SetQueue";
+	var endpoint = "http://localhost:8089/HelloREST/rest/WebService/PostQueue";
 	$.ajax({
 		url:endpoint,
 		type: 'POST',
 		dataType: 'json',
-		data:{
+		contentType: 'application/json',
+		data:JSON.stringify({
     		"user": {
-        		"id": 1232,
-        		"name": "Nombre",
-        		"lastName": "LastName",
-        		"phone":"65598981",
-        		"birthdate":"01/01/1990",
-        		"location":"lugar",
-        		"email":"grupo@gmail.com"
+        		"cedula": cedula,
+        		"nombre": nombre,
+        		"apellido": apellido,
+        		"telefono":telefono,
+        		"fecnac":fecnac,
+        		"email":email
     		}
-		},
+		}),
 		async:false,
 		error: function(){
 				alert("No se pudo reservar el cupo");
