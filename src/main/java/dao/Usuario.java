@@ -40,10 +40,10 @@ public class Usuario {
 			if (rs.next()) {
 				return false;
 			}else {
-				String insert = "insert into Usuario (cedula,nombre,apellido,estado,reg_date,fec_nac,email) values("
+				String insert = "insert into Usuario (cedula,nombre,apellido,estado,reg_date,fec_nac,email,telefono) values("
 						+ userObject.getCedula() + ",'" + userObject.getNombre() + "'"
 						+ ",'" + userObject.getApellido()+"'"
-								+ ",0,CURDATE()," + "STR_TO_DATE('" + userObject.getFecha_nacimiento()+"','%Y-%m-%d')" + ",'" + userObject.getEmail()+"')";
+								+ ",0,CURDATE()," + "STR_TO_DATE('" + userObject.getFecha_nacimiento()+"','%Y-%m-%d')" + ",'" + userObject.getEmail()+"','" + userObject.getTelefono() + "')";
 				PreparedStatement ps2 = connection
 						.prepareStatement(insert);
 				int rs2 = ps2.executeUpdate();

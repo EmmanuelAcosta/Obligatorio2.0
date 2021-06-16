@@ -1,6 +1,14 @@
 /**
  * Vamos a tener unas funciones por acá, las quiero separar del funciones.js
  */
+$(document).ready(function(){
+	ocultoMensajeError("Cedula");
+	ocultoMensajeError("Nombre");
+	ocultoMensajeError("Apellido");
+	ocultoMensajeError("Email");
+	ocultoMensajeError("FechaNacimiento");
+	ocultoMensajeError("Telefono");
+});
 
 function enviarContacto(){
 	var cedulaPrincipal = $("#cedula_principal").val();
@@ -21,6 +29,12 @@ function enviarContacto(){
 		success: function(respuesta){
 				respuesta=eval(respuesta);
 				insercion = respuesta;
+				if(insercion){
+					alert("Insercion registrada");
+				}else{
+					alert("Alguno de los contactos no se encuentra registrado. Ingreselo en la ventana siguiente");
+					popUp("http://localhost:8089/HelloREST/registro.html");
+				}
 		}
 	})
 	return insercion;
@@ -52,6 +66,12 @@ function enviarPositivo(){
 	})
 	return insercion;
 
+}
+function ocultoMensajeError(idCampo){
+	$('#' + "error_" + idCampo).fadeOut(400);
+}
+function MuestroMensajError(idCampo){
+    $('#' +"error_" + idCampo).fadeIn(800);
 }
 function popUp(URL) {
         var popUp = window.open(URL, 'Registro en el sistema', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=1,width=800,height=700,left = 390,top = 50');
@@ -91,6 +111,11 @@ function registrarse(){
 		success: function(respuesta){
 				respuesta=eval(respuesta);
 				reserva = respuesta;
+				if(reserva){
+					alert("Registro exitoso");
+				}else{
+					alert("Ya existe el usuario");
+				}
 		}
 	})
 	return reserva;

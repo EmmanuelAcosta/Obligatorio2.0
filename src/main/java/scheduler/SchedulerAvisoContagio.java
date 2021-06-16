@@ -16,8 +16,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.json.JSONObject;
-
 import dao.Database;
 
 public class SchedulerAvisoContagio extends TimerTask {
@@ -33,16 +31,27 @@ public class SchedulerAvisoContagio extends TimerTask {
 
 	@Override
 	public void run() {
+		Database database = new Database();
+		Connection connection = database.Get_Connection();
 		try {
+			
 			ArrayList<String> emails = this.avisarContagio();
 			if(emails!=null) {
 				this.sendMail(emails);
-				Database database = new Database();
-				Connection connection = database.Get_Connection();
-			 	PreparedStatement ps = connection.prepareStatement("update Usuario set contacto = 0 where contacto = 1");
 				
+			 	PreparedStatement ps = connection.prepareStatement("update Usuario set contacto = 0 where contacto = 1");
+				ps.execute();
+				connection.commit();
+				connection.close();
 			}
 		} catch (SQLException e) {
+			try {
+				connection.rollback();
+				connection.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}		
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

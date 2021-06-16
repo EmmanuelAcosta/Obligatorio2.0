@@ -58,6 +58,7 @@ public class UserService {
 		Date date = Date.valueOf(jsonUser.getString("fecnac"));
 		user.setFecha_nacimiento(date);
 		user.setEmail(jsonUser.getString("email"));
+		user.setTelefono(jsonUser.getString("telefono"));
 		try {
 			
 			UserManager userManager = new UserManager();

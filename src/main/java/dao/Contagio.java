@@ -12,13 +12,20 @@ import dto.ContagioObject;
 public class Contagio {
 	public boolean insertContagio(Connection connection, ContagioObject contObj) throws Exception {
 		try {
+			PreparedStatement psUsuario1 = connection.prepareStatement("select * from Usuario where cedula = '" + contObj.getCedula_principal() +"'" );
+			PreparedStatement psUsuario2 = connection.prepareStatement("select * from Usuario where cedula = '" + contObj.getCedula_contacto() +"'" );
+			ResultSet rs4 = psUsuario2.executeQuery();
+			ResultSet rs3 = psUsuario1.executeQuery();
+			if(!rs3.next() && !rs4.next()) {
+				return false;
+			}
 			PreparedStatement ps = connection.prepareStatement("SELECT * FROM contacto where (cedula_principal = '"
 					+ contObj.getCedula_principal() + "' and cedula_contacto = '" + contObj.getCedula_contacto()
 					+ "') or (cedula_principal = '" + contObj.getCedula_contacto() + "' and cedula_contacto = '"
 					+ contObj.getCedula_principal() + "')");
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				return false;
+				return true;
 			} else {
 				String insert = "insert into contacto (cedula_principal,cedula_contacto,reg_date) values("
 						+ contObj.getCedula_principal() + "," + contObj.getCedula_contacto() + "" + ",CURDATE())";
