@@ -174,3 +174,37 @@ function iniciarScheduler(){
 	})
 }
 
+function iniciarSchedulerCalculoDias(){
+	var endpoint = "http://localhost:8089/HelloREST/rest/WebService/InitiateSchedulerCalculoDias";
+	$.ajax({
+		url:endpoint,
+		type: 'GET',
+		dataType: 'json',
+		data:{},
+		async:false,
+		error: function(){
+				alert("No se pudo iniciar el scheduler");
+		},
+		success: function(respuesta){
+				respuesta=eval(respuesta);
+		}
+	})
+}
+
+function iniciarSchedulerPositivo(){
+	var endpoint = "http://localhost:8089/HelloREST/rest/WebService/InitiateSchedulerPositivo";
+	$.ajax({
+		url:endpoint,
+		type: 'GET',
+		dataType: 'json',
+		data:{},
+		async:false,
+		error: function(){
+				alert("No se pudo iniciar el scheduler");
+		},
+		success: function(respuesta){
+				respuesta=eval(respuesta);
+		}
+	})
+}
+

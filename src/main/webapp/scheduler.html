@@ -27,13 +27,19 @@
 				<div class="col-md-8 seccion" style="padding: 10px;">
 					<div class="row">
 						<div class="col-md-3">
-							<label for="Cedula" class="control-label ">Cantidad de
-								tiempo:</label> <input type="text" class="form-control" maxlength="8"
-								id="Tiempo" name="Tiempo" value=""
-								title="* Ingrese la cantidad de tiempo">
-							<div class="error" id="error_Tiempo">Tiempo invalido</div>
-							<input type="button" name="btnSubmit" value="Iniciar Scheduler"
+							<label for = "AsignarCupos" class ="control-label">Asignar cupos</label>
+							<input type="button" name="btnSubmit" value="Iniciar Scheduler Cupos"
 								class="botones " onClick='iniciarScheduler()' />
+						</div>
+						<div class="col-md-3">
+							<label for = "SchedulerContactoPositivo" class ="control-label">Contacto positivo</label>
+							<input type="button" name="btnSubmit" value="Aviso de contacto"
+								class="botones " onClick='iniciarSchedulerPositivo()' />
+						</div>
+						<div class="col-md-3">
+							<label for = "SchedulerCalculoDias" class ="control-label">Caluclo dias contacto</label>
+							<input type="button" name="btnSubmit" value="Borrar contacto por dias"
+								class="botones " onClick='iniciarSchedulerCalculoDias()' />
 						</div>
 
 					</div>

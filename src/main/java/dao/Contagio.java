@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import dto.ContagioObject;
@@ -31,6 +32,32 @@ public class Contagio {
 				connection.close();
 
 				return true;
+			}
+		} catch (Exception e) {
+			connection.close();
+			connection.rollback();
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public boolean insertPositivo(Connection connection, ContagioObject contObject) throws SQLException {
+		try {
+			PreparedStatement ps = connection.prepareStatement("SELECT * FROM Usuario where cedula = '"
+					+ contObject.getCedula_principal() + "'");
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				String update = "Update Usuario set contacto = true where cedula = '" + contObject.getCedula_principal() + "'";
+				PreparedStatement ps2 = connection.prepareStatement(update);
+				ps2.execute();
+				connection.commit();
+				connection.close();
+				return true;
+			} else {
+				
+				connection.close();
+
+				return false;
 			}
 		} catch (Exception e) {
 			connection.close();

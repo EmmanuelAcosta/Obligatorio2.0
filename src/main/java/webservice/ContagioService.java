@@ -35,4 +35,27 @@ public class ContagioService {
 		}
 		return contagio;
 	}
+	
+	@POST
+	@Path("/InsertPositivo")
+	@Produces("application/json")
+	public String insertPositivo(@QueryParam("cedula_principal") String cedulaPrincipal) {
+		 
+		//JSONObject jsonUser = jsonObject.getJSONObject("user");
+		String contagio= null;
+		ContagioObject contObj = new ContagioObject();
+		contObj.setCedula_principal(cedulaPrincipal);
+		try {
+			
+			ContagioManager contManager = new ContagioManager();
+			boolean contInsert = contManager.insertPositivo(contObj);
+			Gson gson = new Gson();
+			contagio = gson.toJson(contInsert);
+		}
+
+		catch (Exception e) {
+			System.out.println("Exception Error"); // Console
+		}
+		return contagio;
+	}
 }

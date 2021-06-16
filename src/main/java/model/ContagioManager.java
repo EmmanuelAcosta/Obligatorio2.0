@@ -21,5 +21,18 @@ public class ContagioManager {
 		}
 		return cont;
 	}
+	
+	public boolean insertPositivo(ContagioObject contObject) throws Exception {
+		boolean cont =false;
+		try {
+			Database database = new Database();
+			Connection connection = database.Get_Connection();
+			Contagio contagio= new Contagio();
+			cont = contagio.insertPositivo(connection, contObject);
+		} catch (Exception e) {
+			throw e;
+		}
+		return cont;
+	}
 
 }
