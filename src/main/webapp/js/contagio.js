@@ -61,6 +61,8 @@ function enviarPositivo(){
 				insercion = respuesta;
 				if(!insercion){
 					popUp("http://agendavacunacionweb30-env.eba-vvugpwfd.us-west-1.elasticbeanstalk.com/registro.html");
+				}else{
+					alert("Insercion registrada");
 				}
 		}
 	})

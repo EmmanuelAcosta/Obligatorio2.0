@@ -16,7 +16,7 @@ public class Contagio {
 			PreparedStatement psUsuario2 = connection.prepareStatement("select * from Usuario where cedula = '" + contObj.getCedula_contacto() +"'" );
 			ResultSet rs4 = psUsuario2.executeQuery();
 			ResultSet rs3 = psUsuario1.executeQuery();
-			if(!rs4.next() || !rs4.next()) {
+			if(!rs3.next() || !rs4.next()) {
 				return false;
 			}
 			PreparedStatement ps = connection.prepareStatement("SELECT * FROM contacto where (cedula_principal = '"
