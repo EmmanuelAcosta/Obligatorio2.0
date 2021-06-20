@@ -5,8 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
-
+import java.util.Date;
 import java.util.logging.Logger;	
 import java.util.logging.Level;
 
@@ -25,8 +26,10 @@ public class Cupo {
 				cupoObject.setLugar(rs.getString("lugar"));
 				cupoObject.setCodigo_reserva(rs.getString("codigo_reserva"));
 				cupoObject.setEstado(rs.getInt("estado"));
-				cupoObject.setFec_primer_dosis(rs.getDate("fec_primer_dosis"));
-				cupoObject.setFec_segunda_dosis(rs.getDate("fec_segunda_dosis"));
+				Timestamp timestamp = rs.getTimestamp("fec_primer_dosis");
+				if (timestamp != null) cupoObject.setFec_primer_dosis(new Date(timestamp.getTime()));
+				Timestamp timestamp2 = rs.getTimestamp("fec_segunda_dosis");
+				cupoObject.setFec_segunda_dosis(new Date(timestamp2.getTime()));
 				cupoObject.setLocalidad(rs.getString("localidad"));
 				cupoData.add(cupoObject);
 			}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Contagio Covid-19</title>
+<script src="js/jquery.js"></script>
+<script type="text/javascript" src="js/contagio.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/estilo1.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+	<form name="frmPositivo" id="frmPositivo" action="" method="post">
+
+		<br />
+		<div class="container-fluid" id="contenido">
+			<div class="form-group">
+				<div class="col-md-8 " style="padding: 10px;">
+					<div class="titulositemmenuseleccionado">
+						<h3>Enviar positivo por Covid-19</h3>
+					</div>
+				</div>
+				<div class="col-md-8 seccion" style="padding: 10px;">
+					<div class="row">
+						<div class="col-md-3">
+							<label for="Cedula" class="control-label ">Cedula Positivo:</label> 
+							<input type="text" class="form-control" maxlength="8"
+								id="cedula_principal" name="cedula_principal" value=""
+								title="* Ingrese la cedula del positivo">
+							<input type="button" name="btnSubmit" value="Marcar Positivo"
+								class="botones " onClick='enviarPositivo()' />
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+
+</body>

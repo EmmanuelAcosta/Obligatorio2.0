@@ -8,6 +8,8 @@ public class UserObject {
 	private String apellido;
 	private int estado;
 	private Date fecha_nacimiento;
+	private String email;
+	private String telefono;
 	
 	public String getCedula() {
 		return cedula;
@@ -38,6 +40,18 @@ public class UserObject {
 	}
 	public void setFecha_nacimiento(Date fecha_nacimiento) {
 		this.fecha_nacimiento = fecha_nacimiento;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getTelefono() {
+		return telefono;
+	}
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 	
 	
