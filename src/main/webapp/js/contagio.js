@@ -15,7 +15,7 @@ function enviarContacto(){
 	var cedulaContacto = $("#cedula_contacto").val();
 	
 	var insercion = new Object();
-	var endpoint = "http://localhost:8089/HelloREST/rest/WebService/InsertContagio?cedula_principal=" + cedulaPrincipal + "&cedula_contacto=" + cedulaContacto;
+	var endpoint = "http://agendavacunacionweb30-env.eba-vvugpwfd.us-west-1.elasticbeanstalk.com/rest/WebService/InsertContagio?cedula_principal=" + cedulaPrincipal + "&cedula_contacto=" + cedulaContacto;
 	$.ajax({
 		url:endpoint,
 		type: 'POST',
@@ -33,7 +33,7 @@ function enviarContacto(){
 					alert("Insercion registrada");
 				}else{
 					alert("Alguno de los contactos no se encuentra registrado. Ingreselo en la ventana siguiente");
-					popUp("http://localhost:8089/HelloREST/registro.html");
+					popUp("http://agendavacunacionweb30-env.eba-vvugpwfd.us-west-1.elasticbeanstalk.com/registro.html");
 				}
 		}
 	})
@@ -45,7 +45,7 @@ function enviarPositivo(){
 	var cedula = $("#cedula_principal").val();
 	
 	var insercion = new Object();
-	var endpoint = "http://localhost:8089/HelloREST/rest/WebService/InsertPositivo?cedula_principal=" + cedula;
+	var endpoint = "http://agendavacunacionweb30-env.eba-vvugpwfd.us-west-1.elasticbeanstalk.com/rest/WebService/InsertPositivo?cedula_principal=" + cedula;
 	$.ajax({
 		url:endpoint,
 		type: 'POST',
@@ -60,7 +60,7 @@ function enviarPositivo(){
 				respuesta=eval(respuesta);
 				insercion = respuesta;
 				if(!insercion){
-					popUp("http://localhost:8089/HelloREST/registro.html");
+					popUp("http://agendavacunacionweb30-env.eba-vvugpwfd.us-west-1.elasticbeanstalk.com/registro.html");
 				}
 		}
 	})
@@ -81,7 +81,7 @@ function popUp(URL) {
 }
 
 function registrarse(){
-	var endpoint = "http://localhost:8089/HelloREST/rest/WebService/InsertUser";
+	var endpoint = "http://agendavacunacionweb30-env.eba-vvugpwfd.us-west-1.elasticbeanstalk.com/rest/WebService/InsertUser";
 	var cedula = $("#Cedula").val();
 	var nombre = $("#Nombre").val();
 	var apellido = $("#Apellido").val();

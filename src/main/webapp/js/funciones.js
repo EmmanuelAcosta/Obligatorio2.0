@@ -36,7 +36,7 @@ function insertarUsuario(){
 	//var cedula = usuario[0].cedula;
 	//var codigo_reserva = jsonCupos[0].codigo_reserva;
 	var reserva = new Object();
-	var endpoint = "http://localhost:8089/HelloREST/rest/WebService/InsertUser";
+	var endpoint = "http://agendavacunacionweb30-env.eba-vvugpwfd.us-west-1.elasticbeanstalk.com/rest/WebService/InsertUser";
 	$.ajax({
 		url:endpoint,
 		type: 'POST',
@@ -66,7 +66,7 @@ function insertarUsuario(){
 }
 function buscarHoraCupo(){
 	//Deberia agregarse archivo de configuración con el enpoint
-	var cadena = "http://localhost:8089/HelloREST/rest/WebService/GetCupos";
+	var cadena = "http://agendavacunacionweb30-env.eba-vvugpwfd.us-west-1.elasticbeanstalk.com/rest/WebService/GetCupos";
 	//var cedula = $("#Cedula").val();
 	var cupos = new Object();
 	$.ajax({
@@ -90,7 +90,7 @@ function buscarHoraCupo(){
 function getEstado(){
 	var usuario = new Object();
 	var cedula = $("#Cedula").val();
-	var endpoint = "http://localhost:8089/HelloREST/rest/WebService/GetEstado?cedula=" + cedula;
+	var endpoint = "http://agendavacunacionweb30-env.eba-vvugpwfd.us-west-1.elasticbeanstalk.com/rest/WebService/GetEstado?cedula=" + cedula;
 	$.ajax({
 		url: endpoint,
 		type: 'GET',
@@ -129,7 +129,7 @@ function reservarCupo(usuario,jsonCupos){
 	var email = $("#Email").val();
 	var fecnac = $("#FechaNacimiento").val();
 	var reserva = new Object();
-	var endpoint = "http://localhost:8089/HelloREST/rest/WebService/PostQueue";
+	var endpoint = "http://agendavacunacionweb30-env.eba-vvugpwfd.us-west-1.elasticbeanstalk.com/rest/WebService/PostQueue";
 	$.ajax({
 		url:endpoint,
 		type: 'POST',
@@ -158,7 +158,7 @@ function reservarCupo(usuario,jsonCupos){
 }
 
 function iniciarScheduler(){
-	var endpoint = "http://localhost:8089/HelloREST/rest/WebService/InitiateScheduler";
+	var endpoint = "http://agendavacunacionweb30-env.eba-vvugpwfd.us-west-1.elasticbeanstalk.com/rest/WebService/InitiateScheduler";
 	$.ajax({
 		url:endpoint,
 		type: 'GET',
@@ -175,7 +175,7 @@ function iniciarScheduler(){
 }
 
 function iniciarSchedulerCalculoDias(){
-	var endpoint = "http://localhost:8089/HelloREST/rest/WebService/InitiateSchedulerCalculoDias";
+	var endpoint = "http://agendavacunacionweb30-env.eba-vvugpwfd.us-west-1.elasticbeanstalk.com/rest/WebService/InitiateSchedulerCalculoDias";
 	$.ajax({
 		url:endpoint,
 		type: 'GET',
@@ -192,7 +192,7 @@ function iniciarSchedulerCalculoDias(){
 }
 
 function iniciarSchedulerPositivo(){
-	var endpoint = "http://localhost:8089/HelloREST/rest/WebService/InitiateSchedulerPositivo";
+	var endpoint = "http://agendavacunacionweb30-env.eba-vvugpwfd.us-west-1.elasticbeanstalk.com/rest/WebService/InitiateSchedulerPositivo";
 	$.ajax({
 		url:endpoint,
 		type: 'GET',
